@@ -96,7 +96,7 @@ listfiles = function(path)
 end
 
 loadfile = function(path)
-    return loadstring(readfile(path))
+    return loadstring(readfile(path))()
 end
 
 consolecreate = function()
@@ -157,9 +157,20 @@ identifyexecutor = function()
     return "Hyperion", "v1.0"
 end
 
-function HttpGet(string) -- temporary
-    return request({
-        Url = string,
-        Method = "GET"
-    }).Body
+getfenv().script = nil
+
+loadstring = function(Src, Src)
+    local executable
+    local env = env or getfenv(2)
+    local name = (env.script and env.script:GetFullName())
+    local ran, failureReason = pcall(function()
+        local compiledBytecode = compile(source, name)
+        executable = createExecutable(compiledBytecode, env)
+    end)
+
+    if ran then
+        return setfenv(executable, env)
+    end
+    
+    return nil, failureReason
 end
