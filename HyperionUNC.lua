@@ -91,4 +91,14 @@ end
 local getgenv = getgenv or function() return getfenv(1) end
 getgenv().getgenv = getgenv
 
+-- file system (requires running hyperion as admin to run the server)
+
+local HttpService = game:GetService("HttpService")
+local server = "http://localhost:3000/"
+
+writefile = function(path, content)
+    local ask = "writefile,"..path..","..content
+    HttpService:PostAsync(server, ask)
+end
+
 --\\ Hyperion UNC //--
