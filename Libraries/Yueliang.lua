@@ -4244,7 +4244,7 @@ local LuaState = {}  -- dummy, not actually used, but retained since
 ------------------------------------------------------------------------
 
 
-return function (source, name)
+function compile(source, name)
 	name = name or 'compiled-lua'
 	-- luaZ:make_getF returns a file chunk reader
 	-- luaZ:init returns a zio input stream
