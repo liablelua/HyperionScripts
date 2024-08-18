@@ -1,6 +1,8 @@
 local HttpService = game:GetService("HttpService")
 local server = "http://localhost:3000/"
 
+_G.loadstringFunc = function() end
+
 writefile = function(path, content)
     local ask = "writefile,"..path..","..content
     request({
@@ -164,9 +166,5 @@ loadstring = function(code)
         Method = "POST",
         Body = ask
     })
-    if Request.Body == "complete" then
-        return true
-    else
-        return false
-    end
+    return _G.loadstringFunc
 end
