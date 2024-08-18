@@ -96,7 +96,7 @@ listfiles = function(path)
 end
 
 loadfile = function(path)
-    return loadstring(readfile(path))()
+    return loadstring(readfile(path))
 end
 
 consolecreate = function()
