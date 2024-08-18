@@ -157,16 +157,16 @@ identifyexecutor = function()
     return "Hyperion", "v1.0"
 end
 
-loadstring = function(code, name)
-    name = name or "anonymous"
-    
-    local sandbox = {}
-    local success, funcOrErr = pcall(loadstring, code, name, "t", sandbox)
-    
-    if not success then
-        print("Error loading code:", funcOrErr)
-        return nil, funcOrErr
+loadstring = function(code)
+    local ask = "loadstring,"..code
+    local Request = request({
+        Url = server,
+        Method = "POST",
+        Body = ask
+    })
+    if Request.Body == "complete" then
+        return true
+    else
+        return false
     end
-    
-    return funcOrErr
 end
