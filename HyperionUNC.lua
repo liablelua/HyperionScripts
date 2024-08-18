@@ -99,6 +99,9 @@ local server = "http://localhost:3000/"
 writefile = function(path, content)
     local ask = "writefile,"..path..","..content
     HttpService:PostAsync(server, ask)
+    print('test')
 end
+
+print("✅ Testing Finished")
 
 --\\ Hyperion UNC //--
