@@ -153,6 +153,10 @@ consolesettitle = function(title)
     })
 end
 
+identifyexecutor = function()
+    return "Hyperion", "v1.0"
+end
+
 function HttpGet(string) -- temporary
     return request({
         Url = string,
