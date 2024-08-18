@@ -96,14 +96,7 @@ listfiles = function(path)
 end
 
 loadfile = function(path)
-    local ask = "loadfile,"..path
-    local Request = request({
-        Url = server,
-        Method = "POST",
-        Body = ask
-    }).Body
-    local Split = string.split(Request, ",")
-    return {Split[1], Split[2]}
+    return loadstring(readfile(path))
 end
 
 function HttpGet(string) -- temporary
