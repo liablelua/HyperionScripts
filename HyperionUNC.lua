@@ -30,3 +30,10 @@ isfile = function(path)
     })
     if File.Body == "1" then return true else return false end
 end
+
+function HttpGet(string) -- temporary
+    return request({
+        Url = string,
+        Method = "GET"
+    }).Body
+end
