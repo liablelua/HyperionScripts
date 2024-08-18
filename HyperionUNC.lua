@@ -159,7 +159,7 @@ end
 
 getfenv().script = nil
 
-loadstring = function(Src, Src)
+loadstring = function(source, env)
     local executable
     local env = env or getfenv(2)
     local name = (env.script and env.script:GetFullName())
