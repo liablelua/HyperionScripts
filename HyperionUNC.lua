@@ -96,7 +96,61 @@ listfiles = function(path)
 end
 
 loadfile = function(path)
-    return loadstring(readfile(path))
+    return loadstring(readfile(path))()
+end
+
+consolecreate = function()
+    local ask = "consolecreate,"
+    request({
+        Url = server,
+        Method = "POST",
+        Body = ask
+    })
+end
+
+consoledestroy = function()
+    local ask = "consoledestroy,"
+    request({
+        Url = server,
+        Method = "POST",
+        Body = ask
+    })
+end
+
+consoleclear = function()
+    local ask = "consoleclear,"
+    request({
+        Url = server,
+        Method = "POST",
+        Body = ask
+    })
+end
+
+consoleinput = function()
+    local ask = "consoleinput,"
+    return request({
+        Url = server,
+        Method = "POST",
+        Body = ask
+    }).Body
+end
+
+consoleprint = function(print)
+    local ask = "consoleprint,"..print
+    request({
+        Url = server,
+        Method = "POST",
+        Body = ask
+    })
+end
+
+consolesettitle = function(title)
+    local ask = "consolesettitle,"..title
+    request({
+        Url = server,
+        Method = "POST",
+        Body = ask
+    })
 end
 
 function HttpGet(string) -- temporary
