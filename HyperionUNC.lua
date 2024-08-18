@@ -1,7 +1,25 @@
+-- Init
+
 local HttpService = game:GetService("HttpService")
 local server = "http://localhost:3000/"
 
+-- Modules
+
+local syn = {}
+
+-- Variables
+
+local clones = {}
+local protected = {}
+local hui = Instance.new("Folder")
+hui.Name = '\0'
+
+
+-- Globals
+
 _G.loadstringFunc = function() end
+
+-- Functions
 
 writefile = function(path, content)
     local ask = "writefile,"..path..","..content
@@ -167,4 +185,47 @@ loadstring = function(code)
         Body = ask
     })
     return _G.loadstringFunc
+end
+
+cloneref = function(x)
+    return x
+end
+
+gethui = function()
+	local s, H = pcall(function()
+		return game:GetService("CoreGui").RobloxGui
+	end)
+	if H then
+		if not hui.Parent then
+			hui.Parent = H.Parent
+		end
+		return hui
+	else
+		if not hui.Parent then
+			hui.Parent = game:GetService("Players").LocalPlayer.PlayerGui
+		end
+	end
+	return hui
+end
+
+syn.protect_gui = function(gui)
+    if protected[gui] == nil then
+        protected[gui] = {
+            Gui = gui,
+            Name = gui.Name,
+            Parent = gui.Parent
+        }
+    
+        gui.Name = HttpService:GenerateGuid()
+    
+        gui.Parent = gethui()
+    end
+end
+
+syn.unprotect_gui = function(gui)
+    if protected[gui] ~= nil then
+        gui.Name = protected[gui].Name
+        gui.Parent = protected[gui].Parent
+        protected[gui] = nil
+    end
 end
