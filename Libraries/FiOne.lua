@@ -1064,6 +1064,6 @@ function lua_wrap_state(proto, env, upval)
 	return wrapped
 end
 
-return function(bCode, env)
+function createExecutable(bCode, env)
 	return lua_wrap_state(lua_bc_to_state(bCode), env or getfenv(0))
 end
