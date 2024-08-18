@@ -156,3 +156,17 @@ end
 identifyexecutor = function()
     return "Hyperion", "v1.0"
 end
+
+loadstring = function(code, name)
+    name = name or "anonymous"
+    
+    local sandbox = {}
+    local success, funcOrErr = pcall(loadstring, code, name, "t", sandbox)
+    
+    if not success then
+        print("Error loading code:", funcOrErr)
+        return nil, funcOrErr
+    end
+    
+    return funcOrErr
+end
