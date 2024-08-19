@@ -174,7 +174,7 @@ consolesettitle = function(title)
 end
 
 identifyexecutor = function()
-    return "Hyperion", "v1.0"
+    return "Sync", "v1.0"
 end
 
 loadstring = function(code)
