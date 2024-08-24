@@ -1,6 +1,6 @@
 _G.realLS = function() error("Loadstring failed") end
 
-assert(a, b) = function()
+assert = function(a, b)
     if a == nil or a == false then
         error(b)
     end
